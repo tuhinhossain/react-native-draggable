@@ -19,27 +19,55 @@ import PropTypes from 'prop-types';
 function clamp(number, min, max) {
   return Math.max(min, Math.min(number, max));
 }
-
+const defaultProps = {
+  renderText: '＋',
+  renderSize: 36,
+  shouldReverse: false,
+  disabled: false,
+  debug: false,
+  imageSource:null,
+  renderColor:null,
+  children:null,
+  onDrag: () => {},
+  onShortPressRelease: () => {},
+  onDragRelease: () => {},
+  onLongPress: () => {},
+  onPressIn: () => {},
+  onPressOut: () => {},
+  onRelease: () => {},
+  x: 0,
+  y: 0,
+  z: 1,
+};
 
 export default function Draggable({
-  renderText = '＋',
-  renderSize = 36,
-  shouldReverse = false,
-  disabled = false,
-  debug = false,
-  onDrag = () => {},
-  onShortPressRelease = () => {},
-  onDragRelease = () => {},
-  onLongPress = () => {},
-  onPressIn = () => {},
-  onPressOut = () => {},
-  onRelease = () => {},
-  x = 0,
-  y = 0,
-  z = 1,
-  ...restProps
+  renderText='+',
+  isCircle,
+  renderSize=36,
+  imageSource=null,
+  renderColor=null,
+  children=null,
+  shouldReverse=false,
+  onReverse,
+  disabled=false,
+  debug=false,
+  animatedViewProps,
+  touchableOpacityProps,
+  onDrag=()=>{},
+  onShortPressRelease=()=>{},
+  onDragRelease=()=>{},
+  onLongPress=()=>{},
+  onPressIn=()=>{},
+  onPressOut=()=>{},
+  onRelease=()=>{},
+  x=0,
+  y=0,
+  z=1,
+  minX,
+  minY,
+  maxX,
+  maxY,
 }) {
-
 
   // The Animated object housing our xy value so that we can spring back
   const pan = React.useRef(new Animated.ValueXY());
