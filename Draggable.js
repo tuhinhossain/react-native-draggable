@@ -20,35 +20,26 @@ function clamp(number, min, max) {
   return Math.max(min, Math.min(number, max));
 }
 
-export default function Draggable(props) {
-  const {
-    renderText,
-    isCircle,
-    renderSize,
-    imageSource,
-    renderColor,
-    children,
-    shouldReverse,
-    onReverse,
-    disabled,
-    debug,
-    animatedViewProps,
-    touchableOpacityProps,
-    onDrag,
-    onShortPressRelease,
-    onDragRelease,
-    onLongPress,
-    onPressIn,
-    onPressOut,
-    onRelease,
-    x,
-    y,
-    z,
-    minX,
-    minY,
-    maxX,
-    maxY,
-  } = props;
+
+export default function Draggable({
+  renderText = '＋',
+  renderSize = 36,
+  shouldReverse = false,
+  disabled = false,
+  debug = false,
+  onDrag = () => {},
+  onShortPressRelease = () => {},
+  onDragRelease = () => {},
+  onLongPress = () => {},
+  onPressIn = () => {},
+  onPressOut = () => {},
+  onRelease = () => {},
+  x = 0,
+  y = 0,
+  z = 1,
+  ...restProps
+}) {
+
 
   // The Animated object housing our xy value so that we can spring back
   const pan = React.useRef(new Animated.ValueXY());
@@ -285,23 +276,7 @@ export default function Draggable(props) {
 
 /***** Default props and types */
 
-Draggable.defaultProps = {
-  renderText: '＋',
-  renderSize: 36,
-  shouldReverse: false,
-  disabled: false,
-  debug: false,
-  onDrag: () => {},
-  onShortPressRelease: () => {},
-  onDragRelease: () => {},
-  onLongPress: () => {},
-  onPressIn: () => {},
-  onPressOut: () => {},
-  onRelease: () => {},
-  x: 0,
-  y: 0,
-  z: 1,
-};
+
 
 Draggable.propTypes = {
   /**** props that should probably be removed in favor of "children" */
